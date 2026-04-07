@@ -47,7 +47,7 @@ export function GeekTemplate({ data }: TemplateProps) {
 
   return (
     <div
-      className="font-sans min-h-[297mm] max-w-[210mm] mx-auto bg-[#fdfdfd] relative text-[#202124] leading-[1.55] text-[13.5px]"
+      className="font-sans max-w-[210mm] mx-auto bg-[#fdfdfd] relative text-[#202124] leading-[1.55] text-[13.5px]"
       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif', padding: "30px 45px" }}
     >
       {/* Top gradient bar */}

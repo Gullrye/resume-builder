@@ -43,8 +43,18 @@ function PrintContent() {
 
 export default function ResumePrintPage() {
   return (
-    <Suspense>
-      <PrintContent />
-    </Suspense>
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @page { margin: 0; size: A4; }
+            html, body { margin: 0; padding: 0; }
+          `,
+        }}
+      />
+      <Suspense>
+        <PrintContent />
+      </Suspense>
+    </>
   );
 }

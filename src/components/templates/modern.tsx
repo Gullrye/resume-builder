@@ -4,7 +4,7 @@ export function ModernTemplate({ data }: TemplateProps) {
   const { basics, experience, education, skills, projects, languages } = data;
 
   return (
-    <div className="font-sans flex min-h-[297mm] max-w-[210mm] mx-auto">
+    <div className="font-sans flex max-w-[210mm] mx-auto">
       {/* Left Sidebar */}
       <aside className="w-[30%] bg-[#2D3748] text-white p-8">
         <h1 className="text-[18pt] font-bold">{basics.name}</h1>

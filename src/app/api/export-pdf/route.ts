@@ -32,6 +32,12 @@ export async function POST(request: NextRequest) {
     const page = await browser.newPage();
     await page.goto(printUrl, { waitUntil: "networkidle0" });
 
+    // Wait for React hydration to finish (Suspense renders nothing on SSR)
+    await page.waitForFunction(
+      () => document.body.scrollHeight > 100,
+      { timeout: 5000 }
+    );
+
     const pdf = await page.pdf({
       format: "A4",
       printBackground: true,
