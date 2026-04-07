@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { ResumeData, TemplateId } from "./types";
 
-const STORAGE_KEY = "resume-builder-data";
-const TEMPLATE_KEY = "resume-builder-template";
+const STORAGE_KEY = "resume-builder-data-v2";
+const TEMPLATE_KEY = "resume-builder-template-v2";
 
 const defaultResumeData: ResumeData = {
   basics: {
