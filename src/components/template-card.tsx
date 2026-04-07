@@ -30,18 +30,28 @@ export function TemplateCard({
   return (
     <Link
       href={`/editor?template=${id}`}
-      className="group block rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+      className="group block rounded-2xl overflow-hidden bg-white border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(194,65,12,0.08)] hover:-translate-y-1"
     >
-      <div className="aspect-[210/297] overflow-hidden bg-white p-2">
-        <div className="pointer-events-none transform scale-[0.35] origin-top-left w-[285%]">
-          <TemplateComponent data={sampleResumeData} />
+      {/* Thumbnail */}
+      <div className="aspect-[210/297] overflow-hidden bg-paper-dark relative">
+        <div className="absolute inset-0 p-3">
+          <div className="pointer-events-none transform scale-[0.35] origin-top-left w-[285%]">
+            <TemplateComponent data={sampleResumeData} />
+          </div>
+        </div>
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <span className="bg-accent text-white text-sm font-medium px-5 py-2 rounded-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            使用此模板
+          </span>
         </div>
       </div>
-      <div className="p-4 bg-white">
-        <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">
+      {/* Info */}
+      <div className="p-5 border-t border-border">
+        <h3 className="text-lg font-semibold text-ink group-hover:text-accent transition-colors duration-200">
           {name}
         </h3>
-        <p className="text-sm text-gray-500">{description}</p>
+        <p className="text-sm text-muted mt-1">{description}</p>
       </div>
     </Link>
   );

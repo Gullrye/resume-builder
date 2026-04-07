@@ -37,10 +37,10 @@ export function ResumePreview() {
   return (
     <div
       ref={containerRef}
-      className="h-full overflow-auto bg-gray-200 flex items-start justify-center p-4"
+      className="h-full overflow-auto bg-paper-dark flex items-start justify-center p-6"
     >
       <div
-        className="bg-white shadow-lg"
+        className="bg-white shadow-[0_2px_20px_rgba(0,0,0,0.06)]"
         style={{
           width: "794px",
           minHeight: "1123px",

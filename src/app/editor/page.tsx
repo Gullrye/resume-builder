@@ -45,38 +45,44 @@ function EditorContent() {
 
   if (!hydrated) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <p className="text-gray-500">加载中...</p>
+      <div className="h-screen flex items-center justify-center bg-paper">
+        <div className="text-center animate-fade-in">
+          <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-sm text-muted">加载中...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col bg-paper">
       <Toolbar onExport={handleExport} />
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
-        <div className={`w-full md:w-[40%] border-r overflow-y-auto bg-white ${showPreview ? "hidden md:block" : ""}`}>
+        {/* Form panel */}
+        <div className={`w-full md:w-[40%] bg-white border-r border-border overflow-y-auto ${showPreview ? "hidden md:block" : ""}`}>
           <FormPanel />
         </div>
+        {/* Preview panel */}
         <div className={`w-full md:w-[60%] overflow-hidden ${showPreview ? "" : "hidden md:block"}`}>
           <ResumePreview />
         </div>
-        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white border-t p-2 flex gap-2">
+        {/* Mobile bottom bar */}
+        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-border p-3 flex gap-2">
           <button
             onClick={() => setShowPreview(false)}
-            className={`flex-1 py-2 text-sm rounded ${!showPreview ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"}`}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-colors ${!showPreview ? "bg-accent text-white" : "bg-paper text-ink-light"}`}
           >
             编辑
           </button>
           <button
             onClick={() => setShowPreview(true)}
-            className={`flex-1 py-2 text-sm rounded ${showPreview ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"}`}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-colors ${showPreview ? "bg-accent text-white" : "bg-paper text-ink-light"}`}
           >
             预览
           </button>
           <button
             onClick={handleExport}
-            className="px-4 py-2 text-sm text-white bg-blue-600 rounded"
+            className="px-5 py-2.5 text-sm font-medium text-white bg-accent rounded-xl hover:bg-accent-hover transition-colors"
           >
             导出
           </button>

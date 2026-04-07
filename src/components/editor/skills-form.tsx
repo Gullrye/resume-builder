@@ -16,9 +16,9 @@ export function SkillsForm() {
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, i) => (
-          <span key={i} className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-sm rounded">
+          <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 bg-accent-light text-accent text-sm rounded-lg">
             {skill}
-            <button onClick={() => remove(i)} className="text-blue-400 hover:text-red-500">✕</button>
+            <button onClick={() => remove(i)} className="text-accent/50 hover:text-red-500 transition-colors">✕</button>
           </span>
         ))}
       </div>
