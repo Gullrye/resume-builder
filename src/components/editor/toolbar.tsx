@@ -4,7 +4,7 @@ import { useResumeStore } from "@/lib/store";
 import { TEMPLATE_LIST } from "@/components/templates";
 import { TemplateId } from "@/lib/types";
 
-export function Toolbar() {
+export function Toolbar({ onExport }: { onExport?: () => void }) {
   const { templateId, setTemplateId, resumeData, resetAll } = useResumeStore();
 
   const handleExport = async () => {
@@ -52,7 +52,7 @@ export function Toolbar() {
           清空
         </button>
         <button
-          onClick={handleExport}
+          onClick={onExport ?? handleExport}
           className="px-4 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700"
         >
           导出 PDF
