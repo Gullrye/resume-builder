@@ -5,7 +5,7 @@ import { TEMPLATE_LIST } from "@/components/templates";
 import { TemplateId } from "@/lib/types";
 
 export function Toolbar({ onExport }: { onExport?: () => void }) {
-  const { templateId, setTemplateId, resumeData, resetAll } = useResumeStore();
+  const { templateId, setTemplateId, resumeData, resetAll, loadDemo } = useResumeStore();
 
   const handleExport = async () => {
     const res = await fetch("/api/export-pdf", {
@@ -45,6 +45,12 @@ export function Toolbar({ onExport }: { onExport?: () => void }) {
         </select>
       </div>
       <div className="flex items-center gap-2">
+        <button
+          onClick={loadDemo}
+          className="px-3 py-1.5 text-sm text-accent border border-accent/20 rounded-lg hover:bg-accent-light transition-colors"
+        >
+          填充示例
+        </button>
         <button
           onClick={resetAll}
           className="px-3 py-1.5 text-sm text-ink-light border border-border rounded-lg hover:bg-paper-dark transition-colors"
