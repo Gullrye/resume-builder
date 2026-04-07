@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
 
     const browser = await puppeteer.launch({
       headless: true,
+      executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
