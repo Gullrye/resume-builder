@@ -17,7 +17,7 @@ const templates: Record<TemplateId, React.ComponentType<{ data: any }>> = {
 
 const PAGE_WIDTH = 794;
 const PAGE_HEIGHT = 1123;
-const PAGE_MARGIN = 16;
+const PAGE_MARGIN = 8;
 
 /**
  * Calculate page break positions.

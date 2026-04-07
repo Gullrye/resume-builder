@@ -48,7 +48,7 @@ export function GeekTemplate({ data }: TemplateProps) {
   return (
     <div
       className="font-sans max-w-[210mm] mx-auto bg-[#fdfdfd] relative text-[#202124] leading-[1.55] text-[13.5px]"
-      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif', padding: "30px 45px" }}
+      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif', padding: "22px 40px 8px" }}
     >
       {/* Top gradient bar */}
       <div
@@ -57,7 +57,7 @@ export function GeekTemplate({ data }: TemplateProps) {
       />
 
       {/* Header */}
-      <header className="text-center mb-3 mt-[5px]">
+      <header className="text-center mb-2 mt-[3px]">
         <h1 className="text-[34px] font-extrabold tracking-[4px] text-[#202124]">
           {basics.name || "姓名"}
         </h1>
@@ -69,7 +69,7 @@ export function GeekTemplate({ data }: TemplateProps) {
       {/* Profile Summary */}
       {basics.summary && (
         <div
-          className="mb-[18px] rounded-r text-[13px] text-[#3c4043] text-justify"
+          className="mb-3 rounded-r text-[13px] text-[#3c4043] text-justify"
           style={{
             background: "rgba(60,130,190,0.04)",
             borderLeft: "3px solid rgba(60,130,190,0.8)",
@@ -82,10 +82,10 @@ export function GeekTemplate({ data }: TemplateProps) {
 
       {/* Dashboard */}
       <div
-        className="bg-white rounded-lg mb-[22px]"
+        className="bg-white rounded-lg mb-4"
         style={{
           border: "1px solid #e0e0e0",
-          padding: "18px",
+          padding: "14px",
           boxShadow: "0 2px 8px rgba(0,0,0,0.02)",
         }}
       >
@@ -239,7 +239,7 @@ export function GeekTemplate({ data }: TemplateProps) {
                 </div>
                 <ul className="list-none">
                   {exp.description.split("\n").filter(Boolean).map((line, j) => (
-                    <li key={j} className="relative pl-3 mb-1 text-[#3c4043] text-justify">
+                    <li key={j} className="relative pl-3 mb-1 text-[#3c4043] text-justify" style={{ breakInside: "avoid" }}>
                       <span className="absolute left-0 text-[rgba(60,130,190,0.8)] font-bold">•</span>
                       {line}
                     </li>
@@ -325,7 +325,7 @@ function SectionTitle({ children, className = "" }: { children: React.ReactNode;
 
 function TimelineItem({ children, last, hideLine }: { children: React.ReactNode; last: boolean; hideLine?: boolean }) {
   return (
-    <div className={`relative ${last ? "mb-0" : "mb-4"}`} style={{ breakInside: "avoid" }}>
+    <div className={`relative ${last ? "mb-0" : "mb-4"}`}>
       {!hideLine && (
         <span
           className="absolute w-2 h-2 rounded-full bg-white border-2 border-[#3c82be]"

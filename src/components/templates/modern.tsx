@@ -6,7 +6,7 @@ export function ModernTemplate({ data }: TemplateProps) {
   return (
     <div className="font-sans flex max-w-[210mm] mx-auto">
       {/* Left Sidebar */}
-      <aside className="w-[30%] bg-[#2D3748] text-white p-8">
+      <aside className="w-[30%] bg-[#2D3748] text-white px-8 pt-6 pb-4">
         <h1 className="text-[18pt] font-bold">{basics.name}</h1>
         <p className="text-[10pt] mt-1 opacity-80">{basics.title}</p>
 
@@ -57,7 +57,7 @@ export function ModernTemplate({ data }: TemplateProps) {
       </aside>
 
       {/* Right Content */}
-      <main className="w-[70%] bg-white p-8">
+      <main className="w-[70%] bg-white px-8 pt-6 pb-4">
         {/* Summary */}
         {basics.summary && (
           <div className="mb-6">
@@ -70,7 +70,7 @@ export function ModernTemplate({ data }: TemplateProps) {
         {/* Experience */}
         <Section title="工作经历">
           {experience.map((exp, i) => (
-            <div key={i} className="mb-4" style={{ breakInside: "avoid" }}>
+            <div key={i} className="mb-4">
               <div className="flex justify-between items-baseline">
                 <span className="text-[10pt] font-bold text-[#2D3748]">
                   {exp.company}
@@ -85,7 +85,7 @@ export function ModernTemplate({ data }: TemplateProps) {
                   .split("\n")
                   .filter(Boolean)
                   .map((line, j) => (
-                    <li key={j}>{line}</li>
+                    <li key={j} style={{ breakInside: "avoid" }}>{line}</li>
                   ))}
               </ul>
             </div>
@@ -95,8 +95,8 @@ export function ModernTemplate({ data }: TemplateProps) {
         {/* Education */}
         <Section title="教育背景">
           {education.map((edu, i) => (
-            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
-              <div className="flex justify-between items-baseline">
+            <div key={i} className="mb-2">
+              <div className="flex justify-between items-baseline" style={{ breakInside: "avoid" }}>
                 <span className="text-[10pt] font-bold text-[#2D3748]">
                   {edu.school}
                 </span>
@@ -115,7 +115,7 @@ export function ModernTemplate({ data }: TemplateProps) {
         {projects.length > 0 && (
           <Section title="项目经历">
             {projects.map((proj, i) => (
-              <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
+              <div key={i} className="mb-2">
                 <div className="flex items-baseline gap-2">
                   <span className="text-[10pt] font-bold text-[#2D3748]">
                     {proj.name}

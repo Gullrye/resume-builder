@@ -27,7 +27,7 @@ export default function Home() {
         </div>
 
         {/* Template Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 max-w-4xl mx-auto">
           {TEMPLATE_LIST.map((t, i) => (
             <div key={t.id} className="animate-fade-up" style={{ animationDelay: `${(i + 1) * 120}ms` }}>
               <TemplateCard id={t.id} name={t.name} description={t.description} />

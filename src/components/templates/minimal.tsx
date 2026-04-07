@@ -4,7 +4,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
   const { basics, experience, education, skills, projects, languages } = data;
 
   return (
-    <div className="font-sans p-10 max-w-[210mm] mx-auto leading-loose">
+    <div className="font-sans px-10 pt-8 pb-4 max-w-[210mm] mx-auto leading-loose">
       {/* Header */}
       <h1 className="text-[20pt] text-center">{basics.name}</h1>
       <p className="text-[10pt] text-center text-gray-500 mt-1">
@@ -21,7 +21,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
       {/* Experience */}
       <MinimalSection title="工作经历">
         {experience.map((exp, i) => (
-          <div key={i} className="mb-4" style={{ breakInside: "avoid" }}>
+          <div key={i} className="mb-4">
             <div className="flex justify-between items-baseline">
               <span className="text-[10pt] text-gray-800">{exp.company}</span>
               <span className="text-[8pt] text-gray-400">
@@ -34,7 +34,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
                 .split("\n")
                 .filter(Boolean)
                 .map((line, j) => (
-                  <li key={j}>{line}</li>
+                  <li key={j} style={{ breakInside: "avoid" }}>{line}</li>
                 ))}
             </ul>
           </div>
@@ -68,7 +68,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
       {projects.length > 0 && (
         <MinimalSection title="项目经历">
           {projects.map((proj, i) => (
-            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
+            <div key={i} className="mb-2">
               <span className="text-[10pt] text-gray-800">{proj.name}</span>
               {proj.url && (
                 <span className="text-[8pt] text-gray-400 ml-2">

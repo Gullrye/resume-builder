@@ -47,8 +47,9 @@ export default function ResumePrintPage() {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            @page { margin: 0; size: A4; }
-            html, body { margin: 0; padding: 0; }
+            @page { margin: 18px 0; size: A4; }
+            @page :first { margin-top: 0; }
+            html, body { margin: 0; padding: 0; background: white; }
           `,
         }}
       />

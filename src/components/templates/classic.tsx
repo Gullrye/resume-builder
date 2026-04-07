@@ -4,7 +4,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
   const { basics, experience, education, skills, projects, languages } = data;
 
   return (
-    <div className="font-serif text-black p-10 max-w-[210mm] mx-auto">
+    <div className="font-serif text-black px-10 pt-8 pb-4 max-w-[210mm] mx-auto">
       {/* Header */}
       <h1 className="text-[22pt] font-bold text-center">{basics.name}</h1>
       <p className="text-[11pt] text-center mt-1">{basics.title}</p>
@@ -19,7 +19,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {/* Experience */}
       <Section title="工作经历">
         {experience.map((exp, i) => (
-          <div key={i} className="mb-3" style={{ breakInside: "avoid" }}>
+          <div key={i} className="mb-3">
             <div className="flex justify-between items-baseline">
               <span className="text-[10pt] font-bold">{exp.company}</span>
               <span className="text-[8pt] text-gray-600">
@@ -32,7 +32,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
                 .split("\n")
                 .filter(Boolean)
                 .map((line, j) => (
-                  <li key={j}>{line}</li>
+                  <li key={j} style={{ breakInside: "avoid" }}>{line}</li>
                 ))}
             </ul>
           </div>
@@ -42,8 +42,8 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {/* Education */}
       <Section title="教育背景">
         {education.map((edu, i) => (
-          <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
-            <div className="flex justify-between items-baseline">
+          <div key={i} className="mb-2">
+            <div className="flex justify-between items-baseline" style={{ breakInside: "avoid" }}>
               <span className="text-[10pt] font-bold">
                 {edu.school} — {edu.degree} {edu.major}
               </span>
@@ -66,7 +66,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {projects.length > 0 && (
         <Section title="项目经历">
           {projects.map((proj, i) => (
-            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
+            <div key={i} className="mb-2">
               <span className="text-[10pt] font-bold">{proj.name}</span>
               {proj.url && (
                 <span className="text-[8pt] text-gray-500 ml-2">
