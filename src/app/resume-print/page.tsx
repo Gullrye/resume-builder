@@ -29,7 +29,8 @@ function PrintContent() {
 
   let resumeData: ResumeData;
   try {
-    resumeData = JSON.parse(atob(dataB64));
+    const bytes = Uint8Array.from(atob(dataB64), (c) => c.charCodeAt(0));
+    resumeData = JSON.parse(new TextDecoder().decode(bytes));
   } catch {
     resumeData = emptyData;
   }
