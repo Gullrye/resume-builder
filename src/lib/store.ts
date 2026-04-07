@@ -32,18 +32,20 @@ function migrateData(raw: ResumeData): ResumeData {
 
 function loadFromStorage(): { data: ResumeData; templateId: TemplateId } {
   if (typeof window === "undefined") {
-    return { data: defaultResumeData, templateId: "classic" };
+    return { data: defaultResumeData, templateId: "modern" };
   }
   try {
     const savedData = localStorage.getItem(STORAGE_KEY);
     const savedTemplate = localStorage.getItem(TEMPLATE_KEY);
     const data = savedData ? migrateData(JSON.parse(savedData)) : defaultResumeData;
-    return {
-      data,
-      templateId: (savedTemplate as TemplateId) || "classic",
-    };
+    // Migrate removed templates to default
+    const validTemplates: TemplateId[] = ["modern", "geek"];
+    const tid = validTemplates.includes(savedTemplate as TemplateId)
+      ? (savedTemplate as TemplateId)
+      : "modern";
+    return { data, templateId: tid };
   } catch {
-    return { data: defaultResumeData, templateId: "classic" };
+    return { data: defaultResumeData, templateId: "modern" };
   }
 }
 
@@ -61,7 +63,7 @@ interface ResumeStore {
 
 export const useResumeStore = create<ResumeStore>((set, get) => ({
   resumeData: defaultResumeData,
-  templateId: "classic",
+  templateId: "modern",
   hydrated: false,
 
   setResumeData: (data) => {
@@ -90,7 +92,7 @@ export const useResumeStore = create<ResumeStore>((set, get) => ({
   },
 
   resetAll: () => {
-    set({ resumeData: defaultResumeData, templateId: "classic" });
+    set({ resumeData: defaultResumeData, templateId: "modern" });
     if (typeof window !== "undefined") {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(TEMPLATE_KEY);

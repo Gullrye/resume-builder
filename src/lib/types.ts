@@ -42,7 +42,7 @@ export interface ResumeData {
   radar?: RadarDimension[];
 }
 
-export type TemplateId = "classic" | "modern" | "minimal" | "geek";
+export type TemplateId = "modern" | "geek";
 
 export interface TemplateProps {
   data: ResumeData;

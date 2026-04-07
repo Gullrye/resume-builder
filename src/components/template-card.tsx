@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { TemplateId } from "@/lib/types";
-import { ClassicTemplate } from "./templates/classic";
 import { ModernTemplate } from "./templates/modern";
-import { MinimalTemplate } from "./templates/minimal";
 import { GeekTemplate } from "./templates/geek";
 import { sampleResumeData } from "./template-card.helpers";
 
@@ -12,9 +10,7 @@ const templateComponents: Record<
   TemplateId,
   React.ComponentType<{ data: typeof sampleResumeData }>
 > = {
-  classic: ClassicTemplate,
   modern: ModernTemplate,
-  minimal: MinimalTemplate,
   geek: GeekTemplate,
 };
 

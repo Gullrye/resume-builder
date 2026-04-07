@@ -1,17 +1,13 @@
 "use client";
 
 import { useResumeStore } from "@/lib/store";
-import { ClassicTemplate } from "@/components/templates/classic";
 import { ModernTemplate } from "@/components/templates/modern";
-import { MinimalTemplate } from "@/components/templates/minimal";
 import { GeekTemplate } from "@/components/templates/geek";
 import { TemplateId } from "@/lib/types";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const templates: Record<TemplateId, React.ComponentType<{ data: any }>> = {
-  classic: ClassicTemplate,
   modern: ModernTemplate,
-  minimal: MinimalTemplate,
   geek: GeekTemplate,
 };
 
@@ -138,7 +134,7 @@ export function ResumePreview() {
   return (
     <div
       ref={containerRef}
-      className="h-full overflow-auto bg-paper-dark flex flex-col items-center py-6 px-6 gap-8"
+      className="h-full overflow-auto bg-paper-dark flex flex-col items-center py-6 px-6 gap-3"
     >
       {/* Hidden measurement container */}
       <div
