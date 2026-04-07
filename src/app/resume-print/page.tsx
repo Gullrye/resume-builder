@@ -1,3 +1,6 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import { ResumeData, TemplateId } from "@/lib/types";
 import { ClassicTemplate } from "@/components/templates/classic";
 import { ModernTemplate } from "@/components/templates/modern";
@@ -10,18 +13,25 @@ const templates: Record<TemplateId, React.ComponentType<{ data: ResumeData }>> =
   minimal: MinimalTemplate,
 };
 
+const emptyData: ResumeData = {
+  basics: { name: "", title: "", email: "", phone: "", location: "" },
+  experience: [],
+  education: [],
+  skills: [],
+  projects: [],
+  languages: [],
+};
+
 function PrintContent() {
-  const params = typeof window !== "undefined"
-    ? new URLSearchParams(window.location.search)
-    : null;
-  const dataB64 = params?.get("data") || "";
-  const templateId = (params?.get("template") || "classic") as TemplateId;
+  const searchParams = useSearchParams();
+  const dataB64 = searchParams.get("data") || "";
+  const templateId = (searchParams.get("template") || "classic") as TemplateId;
 
   let resumeData: ResumeData;
   try {
     resumeData = JSON.parse(atob(dataB64));
   } catch {
-    resumeData = { basics: { name: "", title: "", email: "", phone: "", location: "" }, experience: [], education: [], skills: [], projects: [], languages: [] };
+    resumeData = emptyData;
   }
 
   const Template = templates[templateId];
