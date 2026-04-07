@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useResumeStore } from "@/lib/store";
 import { TEMPLATE_LIST } from "@/components/templates";
 import { TemplateId } from "@/lib/types";
@@ -31,6 +32,13 @@ export function Toolbar({ onExport }: { onExport?: () => void }) {
   return (
     <div className="flex items-center justify-between px-5 py-3 bg-white border-b border-border">
       <div className="flex items-center gap-3">
+        <Link
+          href="/"
+          className="text-sm font-semibold text-ink hover:text-accent transition-colors"
+        >
+          ← 首页
+        </Link>
+        <span className="text-border">|</span>
         <label className="text-sm font-medium text-ink-light">模板</label>
         <select
           value={templateId}

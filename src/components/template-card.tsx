@@ -5,6 +5,7 @@ import { TemplateId } from "@/lib/types";
 import { ClassicTemplate } from "./templates/classic";
 import { ModernTemplate } from "./templates/modern";
 import { MinimalTemplate } from "./templates/minimal";
+import { GeekTemplate } from "./templates/geek";
 import { sampleResumeData } from "./template-card.helpers";
 
 const templateComponents: Record<
@@ -14,6 +15,7 @@ const templateComponents: Record<
   classic: ClassicTemplate,
   modern: ModernTemplate,
   minimal: MinimalTemplate,
+  geek: GeekTemplate,
 };
 
 export function TemplateCard({

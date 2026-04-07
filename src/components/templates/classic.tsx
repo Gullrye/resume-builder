@@ -19,7 +19,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {/* Experience */}
       <Section title="工作经历">
         {experience.map((exp, i) => (
-          <div key={i} className="mb-3">
+          <div key={i} className="mb-3" style={{ breakInside: "avoid" }}>
             <div className="flex justify-between items-baseline">
               <span className="text-[10pt] font-bold">{exp.company}</span>
               <span className="text-[8pt] text-gray-600">
@@ -42,7 +42,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {/* Education */}
       <Section title="教育背景">
         {education.map((edu, i) => (
-          <div key={i} className="mb-2">
+          <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
             <div className="flex justify-between items-baseline">
               <span className="text-[10pt] font-bold">
                 {edu.school} — {edu.degree} {edu.major}
@@ -58,7 +58,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {/* Skills */}
       {skills.length > 0 && (
         <Section title="专业技能">
-          <p className="text-[9pt]">{skills.join(" · ")}</p>
+          <p className="text-[9pt]">{skills.map((s) => s.name).join(" · ")}</p>
         </Section>
       )}
 
@@ -66,7 +66,7 @@ export function ClassicTemplate({ data }: TemplateProps) {
       {projects.length > 0 && (
         <Section title="项目经历">
           {projects.map((proj, i) => (
-            <div key={i} className="mb-2">
+            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
               <span className="text-[10pt] font-bold">{proj.name}</span>
               {proj.url && (
                 <span className="text-[8pt] text-gray-500 ml-2">

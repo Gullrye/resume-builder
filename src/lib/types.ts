@@ -1,3 +1,13 @@
+export interface SkillItem {
+  name: string;
+  level: number; // 0-100
+}
+
+export interface RadarDimension {
+  label: string;
+  value: number; // 0-100
+}
+
 export interface ResumeData {
   basics: {
     name: string;
@@ -22,16 +32,17 @@ export interface ResumeData {
     startDate: string;
     endDate: string;
   }[];
-  skills: string[];
+  skills: SkillItem[];
   projects: {
     name: string;
     description: string;
     url?: string;
   }[];
   languages: string[];
+  radar?: RadarDimension[];
 }
 
-export type TemplateId = "classic" | "modern" | "minimal";
+export type TemplateId = "classic" | "modern" | "minimal" | "geek";
 
 export interface TemplateProps {
   data: ResumeData;

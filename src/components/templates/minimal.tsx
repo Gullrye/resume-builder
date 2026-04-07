@@ -21,7 +21,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
       {/* Experience */}
       <MinimalSection title="工作经历">
         {experience.map((exp, i) => (
-          <div key={i} className="mb-4">
+          <div key={i} className="mb-4" style={{ breakInside: "avoid" }}>
             <div className="flex justify-between items-baseline">
               <span className="text-[10pt] text-gray-800">{exp.company}</span>
               <span className="text-[8pt] text-gray-400">
@@ -60,7 +60,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
       {/* Skills */}
       {skills.length > 0 && (
         <MinimalSection title="专业技能">
-          <p className="text-[9pt] text-gray-600">{skills.join(" · ")}</p>
+          <p className="text-[9pt] text-gray-600">{skills.map((s) => s.name).join(" · ")}</p>
         </MinimalSection>
       )}
 
@@ -68,7 +68,7 @@ export function MinimalTemplate({ data }: TemplateProps) {
       {projects.length > 0 && (
         <MinimalSection title="项目经历">
           {projects.map((proj, i) => (
-            <div key={i} className="mb-2">
+            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
               <span className="text-[10pt] text-gray-800">{proj.name}</span>
               {proj.url && (
                 <span className="text-[8pt] text-gray-400 ml-2">

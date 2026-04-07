@@ -5,12 +5,14 @@ import { ResumeData, TemplateId } from "@/lib/types";
 import { ClassicTemplate } from "@/components/templates/classic";
 import { ModernTemplate } from "@/components/templates/modern";
 import { MinimalTemplate } from "@/components/templates/minimal";
+import { GeekTemplate } from "@/components/templates/geek";
 import { Suspense } from "react";
 
 const templates: Record<TemplateId, React.ComponentType<{ data: ResumeData }>> = {
   classic: ClassicTemplate,
   modern: ModernTemplate,
   minimal: MinimalTemplate,
+  geek: GeekTemplate,
 };
 
 const emptyData: ResumeData = {

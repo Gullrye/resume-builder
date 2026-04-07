@@ -10,7 +10,7 @@ export function ExperienceForm() {
   return (
     <div className="space-y-4 py-2">
       {experience.map((exp, i) => (
-        <div key={i} className="border rounded p-3 space-y-2 relative">
+        <div key={i} className="border rounded p-3 pr-8 space-y-2 relative">
           <button onClick={() => remove(i)} className="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-sm">✕</button>
           <div className="grid grid-cols-2 gap-2">
             <input className="border rounded px-2 py-1 text-sm w-full" placeholder="公司名" value={exp.company} onChange={(e) => update(i, "company", e.target.value)} />

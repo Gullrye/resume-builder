@@ -10,7 +10,7 @@ export function ProjectsForm() {
   return (
     <div className="space-y-4 py-2">
       {projects.map((proj, i) => (
-        <div key={i} className="border rounded p-3 space-y-2 relative">
+        <div key={i} className="border rounded p-3 pr-8 space-y-2 relative">
           <button onClick={() => remove(i)} className="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-sm">✕</button>
           <input className="border rounded px-2 py-1 text-sm w-full" placeholder="项目名称" value={proj.name} onChange={(e) => update(i, "name", e.target.value)} />
           <textarea className="border rounded px-2 py-1 text-sm w-full" placeholder="项目描述" rows={2} value={proj.description} onChange={(e) => update(i, "description", e.target.value)} />

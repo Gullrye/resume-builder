@@ -4,12 +4,14 @@ import { ExperienceForm } from "./experience-form";
 import { EducationForm } from "./education-form";
 import { SkillsForm } from "./skills-form";
 import { ProjectsForm } from "./projects-form";
+import { RadarForm } from "./radar-form";
 
 const sections = [
   { title: "基本信息", Component: BasicsForm, defaultOpen: true },
   { title: "工作经历", Component: ExperienceForm, defaultOpen: true },
   { title: "教育背景", Component: EducationForm, defaultOpen: false },
   { title: "技能", Component: SkillsForm, defaultOpen: false },
+  { title: "能力维度", Component: RadarForm, defaultOpen: false },
   { title: "项目经历", Component: ProjectsForm, defaultOpen: false },
 ];
 

@@ -27,7 +27,11 @@ export const sampleResumeData: ResumeData = {
       endDate: "2018-06",
     },
   ],
-  skills: ["React", "TypeScript", "Node.js"],
+  skills: [
+    { name: "React", level: 95 },
+    { name: "TypeScript", level: 90 },
+    { name: "Node.js", level: 80 },
+  ],
   projects: [{ name: "内部工具平台", description: "企业级低代码平台" }],
   languages: ["中文（母语）", "英语（流利）"],
 };

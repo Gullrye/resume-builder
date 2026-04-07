@@ -29,7 +29,7 @@ export function ModernTemplate({ data }: TemplateProps) {
                   key={i}
                   className="text-[7pt] bg-white/20 rounded px-2 py-0.5"
                 >
-                  {s}
+                  {s.name}
                 </span>
               ))}
             </div>
@@ -70,7 +70,7 @@ export function ModernTemplate({ data }: TemplateProps) {
         {/* Experience */}
         <Section title="工作经历">
           {experience.map((exp, i) => (
-            <div key={i} className="mb-4">
+            <div key={i} className="mb-4" style={{ breakInside: "avoid" }}>
               <div className="flex justify-between items-baseline">
                 <span className="text-[10pt] font-bold text-[#2D3748]">
                   {exp.company}
@@ -95,7 +95,7 @@ export function ModernTemplate({ data }: TemplateProps) {
         {/* Education */}
         <Section title="教育背景">
           {education.map((edu, i) => (
-            <div key={i} className="mb-2">
+            <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
               <div className="flex justify-between items-baseline">
                 <span className="text-[10pt] font-bold text-[#2D3748]">
                   {edu.school}
@@ -115,7 +115,7 @@ export function ModernTemplate({ data }: TemplateProps) {
         {projects.length > 0 && (
           <Section title="项目经历">
             {projects.map((proj, i) => (
-              <div key={i} className="mb-2">
+              <div key={i} className="mb-2" style={{ breakInside: "avoid" }}>
                 <div className="flex items-baseline gap-2">
                   <span className="text-[10pt] font-bold text-[#2D3748]">
                     {proj.name}

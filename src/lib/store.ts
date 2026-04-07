@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ResumeData, TemplateId } from "./types";
+import { ResumeData, TemplateId, SkillItem } from "./types";
 
 const STORAGE_KEY = "resume-builder-data-v2";
 const TEMPLATE_KEY = "resume-builder-template-v2";
@@ -19,6 +19,17 @@ const defaultResumeData: ResumeData = {
   languages: [],
 };
 
+function migrateData(raw: ResumeData): ResumeData {
+  // Migrate skills from string[] to SkillItem[]
+  if (raw.skills.length > 0 && typeof raw.skills[0] === "string") {
+    raw.skills = (raw.skills as unknown as string[]).map((s) => ({
+      name: s,
+      level: 80,
+    })) as SkillItem[];
+  }
+  return raw;
+}
+
 function loadFromStorage(): { data: ResumeData; templateId: TemplateId } {
   if (typeof window === "undefined") {
     return { data: defaultResumeData, templateId: "classic" };
@@ -26,8 +37,9 @@ function loadFromStorage(): { data: ResumeData; templateId: TemplateId } {
   try {
     const savedData = localStorage.getItem(STORAGE_KEY);
     const savedTemplate = localStorage.getItem(TEMPLATE_KEY);
+    const data = savedData ? migrateData(JSON.parse(savedData)) : defaultResumeData;
     return {
-      data: savedData ? JSON.parse(savedData) : defaultResumeData,
+      data,
       templateId: (savedTemplate as TemplateId) || "classic",
     };
   } catch {
@@ -126,7 +138,24 @@ export const useResumeStore = create<ResumeStore>((set, get) => ({
           endDate: "2018-06",
         },
       ],
-      skills: ["React", "TypeScript", "Next.js", "Node.js", "Webpack", "Tailwind CSS", "GraphQL", "Docker"],
+      skills: [
+        { name: "React", level: 95 },
+        { name: "TypeScript", level: 90 },
+        { name: "Next.js", level: 85 },
+        { name: "Node.js", level: 80 },
+        { name: "Webpack", level: 88 },
+        { name: "Tailwind CSS", level: 85 },
+        { name: "GraphQL", level: 75 },
+        { name: "Docker", level: 70 },
+      ],
+      radar: [
+        { label: "前端框架", value: 90 },
+        { label: "跨端开发", value: 70 },
+        { label: "全流程闭环", value: 85 },
+        { label: "Node.js拓展", value: 75 },
+        { label: "AI辅助研发", value: 80 },
+        { label: "硬件通信", value: 50 },
+      ],
       projects: [
         {
           name: "企业级低代码平台",
