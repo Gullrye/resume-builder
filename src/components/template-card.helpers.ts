@@ -33,5 +33,7 @@ export const sampleResumeData: ResumeData = {
     { name: "Node.js", level: 80 },
   ],
   projects: [{ name: "内部工具平台", description: "企业级低代码平台" }],
-  languages: ["中文（母语）", "英语（流利）"],
+  languages: [
+    { label: "语言能力", value: "中文（母语）/ 英语（流利）" },
+  ],
 };

@@ -36,22 +36,17 @@ export function ModernTemplate({ data }: TemplateProps) {
           </div>
         )}
 
-        {/* Languages */}
+        {/* Custom labeled fields */}
         {languages.length > 0 && (
-          <div className="mt-6">
-            <h3 className="text-[9pt] font-bold uppercase tracking-wide mb-2">
-              语言能力
-            </h3>
-            <div className="flex flex-wrap gap-1">
-              {languages.map((l, i) => (
-                <span
-                  key={i}
-                  className="text-[7pt] bg-white/20 rounded px-2 py-0.5"
-                >
-                  {l}
-                </span>
-              ))}
-            </div>
+          <div className="mt-6 space-y-3">
+            {languages.map((entry, i) => (
+              <div key={i}>
+                <h3 className="text-[9pt] font-bold uppercase tracking-wide mb-2">
+                  {entry.label || "自定义"}
+                </h3>
+                <p className="text-[7pt] opacity-90">{entry.value}</p>
+              </div>
+            ))}
           </div>
         )}
       </aside>

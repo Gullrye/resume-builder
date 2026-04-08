@@ -27,6 +27,15 @@ function migrateData(raw: ResumeData): ResumeData {
       level: 80,
     })) as SkillItem[];
   }
+  // Migrate languages from string[] to { label, value }[]
+  if (raw.languages.length > 0 && typeof raw.languages[0] === "string") {
+    raw.languages = (raw.languages as unknown as string[]).map((l) => {
+      const match = l.match(/^(.+?)[（(](.+?)[）)]$/);
+      return match
+        ? { label: match[1].trim(), value: match[2].trim() }
+        : { label: l, value: "" };
+    }) as ResumeData["languages"];
+  }
   return raw;
 }
 
@@ -55,6 +64,7 @@ interface ResumeStore {
   hydrated: boolean;
   setResumeData: (data: ResumeData) => void;
   updateBasics: (basics: Partial<ResumeData["basics"]>) => void;
+  updateLanguages: (languages: ResumeData["languages"]) => void;
   setTemplateId: (id: TemplateId) => void;
   resetAll: () => void;
   hydrate: () => void;
@@ -78,6 +88,14 @@ export const useResumeStore = create<ResumeStore>((set, get) => ({
       ...get().resumeData,
       basics: { ...get().resumeData.basics, ...basics },
     };
+    set({ resumeData: newData });
+    if (typeof window !== "undefined") {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+    }
+  },
+
+  updateLanguages: (languages) => {
+    const newData = { ...get().resumeData, languages };
     set({ resumeData: newData });
     if (typeof window !== "undefined") {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
@@ -169,7 +187,9 @@ export const useResumeStore = create<ResumeStore>((set, get) => ({
           description: "基于 Web Vitals 的实时监控平台，接入 50+ 业务线",
         },
       ],
-      languages: ["中文（母语）", "英语（流利）"],
+      languages: [
+        { label: "语言能力", value: "中文（母语）/ 英语（流利）" },
+      ],
     };
     set({ resumeData: demo });
     if (typeof window !== "undefined") {

@@ -103,7 +103,7 @@ export function GeekTemplate({ data }: TemplateProps) {
             {basics.email && <InfoRow label="电子邮箱" value={basics.email} small />}
             {basics.location && <InfoRow label="期望城市" value={basics.location} />}
             {basics.title && <InfoRow label="求职意向" value={basics.title} />}
-            {languages.length > 0 && <InfoRow label="语言能力" value={languages.join(" / ")} />}
+            {languages.map((l, i) => l.value && <InfoRow key={i} label={l.label} value={l.value} />)}
           </div>
         </div>
 

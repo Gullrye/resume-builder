@@ -38,7 +38,7 @@ export interface ResumeData {
     description: string;
     url?: string;
   }[];
-  languages: string[];
+  languages: { label: string; value: string }[];
   radar?: RadarDimension[];
 }
 
