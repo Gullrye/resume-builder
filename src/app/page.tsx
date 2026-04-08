@@ -9,15 +9,15 @@ export default function Home() {
         style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-6 py-20">
+      <div className="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 sm:py-16 md:py-20">
         {/* Hero */}
-        <div className="text-center mb-20 animate-fade-up">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-up">
           <div className="inline-block mb-6">
             <span className="text-xs font-medium tracking-[0.2em] uppercase text-accent bg-accent-light px-4 py-1.5 rounded-full">
               Resume Builder
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-ink tracking-tight leading-[1.1] mb-5">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-ink tracking-tight leading-[1.1] mb-5">
             写简历，<br className="hidden sm:block" />
             <span className="text-accent">不纠结</span>
           </h1>

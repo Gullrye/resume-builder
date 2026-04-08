@@ -109,8 +109,18 @@ export function ResumePreview() {
 
     const observer = new ResizeObserver(() => {
       const containerWidth = container.clientWidth;
-      const newScale = Math.min((containerWidth - 48) / PAGE_WIDTH, 1);
+      const pad = containerWidth < 768 ? 24 : 48;
+      const newScale = Math.min((containerWidth - pad) / PAGE_WIDTH, 1);
       setScale(newScale);
+      // Re-measure pages — needed when container transitions from display:none to visible
+      const el = measureRef.current;
+      if (el) {
+        const h = el.scrollHeight;
+        if (h > 0) {
+          setTotalHeight(h);
+          setPageBreaks(calculatePageBreaks(el, PAGE_HEIGHT));
+        }
+      }
     });
 
     observer.observe(container);
@@ -134,7 +144,7 @@ export function ResumePreview() {
   return (
     <div
       ref={containerRef}
-      className="h-full overflow-auto bg-paper-dark flex flex-col items-center py-6 px-6 gap-3"
+      className="h-full overflow-auto bg-paper-dark flex flex-col items-center py-4 md:py-6 px-3 md:px-6 gap-3"
     >
       {/* Hidden measurement container */}
       <div

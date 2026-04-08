@@ -70,15 +70,15 @@ function EditorContent() {
       <Toolbar onExport={handleExport} />
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         {/* Form panel */}
-        <div className={`w-full md:w-[40%] bg-white border-r border-border overflow-y-auto ${showPreview ? "hidden md:block" : ""}`}>
+        <div className={`flex-1 md:flex-none w-full md:w-[40%] bg-white border-r border-border overflow-y-auto pb-20 md:pb-0 ${showPreview ? "hidden md:block" : ""}`}>
           <FormPanel />
         </div>
         {/* Preview panel */}
-        <div className={`w-full md:w-[60%] overflow-hidden ${showPreview ? "" : "hidden md:block"}`}>
+        <div className={`flex-1 md:flex-none w-full md:w-[60%] overflow-hidden pb-20 md:pb-0 ${showPreview ? "" : "hidden md:block"}`}>
           <ResumePreview />
         </div>
         {/* Mobile bottom bar */}
-        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-border p-3 flex gap-2">
+        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white/80 backdrop-blur-lg border-t border-border p-3 flex gap-2" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
           <button
             onClick={() => setShowPreview(false)}
             className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-colors ${!showPreview ? "bg-accent text-white" : "bg-paper text-ink-light"}`}

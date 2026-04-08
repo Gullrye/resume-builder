@@ -31,7 +31,7 @@ export function TemplateCard({
       className="group block rounded-2xl overflow-hidden bg-white border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(194,65,12,0.08)] hover:-translate-y-1"
     >
       {/* Thumbnail */}
-      <div className="h-[360px] overflow-hidden bg-paper-dark relative">
+      <div className="h-[260px] sm:h-[360px] overflow-hidden bg-paper-dark relative">
         <div className="absolute inset-0 p-3">
           <div className="pointer-events-none transform scale-[0.35] origin-top-left w-[285%]">
             <TemplateComponent data={sampleResumeData} />
