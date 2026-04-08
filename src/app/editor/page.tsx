@@ -70,7 +70,7 @@ function EditorContent() {
       <Toolbar onExport={handleExport} />
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         {/* Form panel */}
-        <div className={`flex-1 md:flex-none w-full md:w-[40%] bg-white border-r border-border overflow-y-auto pb-20 md:pb-0 ${showPreview ? "hidden md:block" : ""}`}>
+        <div className={`flex-1 md:flex-none w-full md:w-[40%] bg-white border-r border-border overflow-y-auto overflow-x-hidden pb-20 md:pb-0 min-w-0 ${showPreview ? "hidden md:block" : ""}`}>
           <FormPanel />
         </div>
         {/* Preview panel */}

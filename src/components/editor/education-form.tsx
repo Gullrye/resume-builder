@@ -10,16 +10,16 @@ export function EducationForm() {
   return (
     <div className="space-y-4 py-2">
       {education.map((edu, i) => (
-        <div key={i} className="border rounded p-3 pr-8 space-y-2 relative">
+        <div key={i} className="border rounded p-3 pr-8 space-y-2 relative min-w-0">
           <button onClick={() => remove(i)} className="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-sm">✕</button>
-          <input className="border rounded px-2 py-1 text-sm w-full" placeholder="学校" value={edu.school} onChange={(e) => update(i, "school", e.target.value)} />
+          <input className="border rounded px-2 py-1 text-sm w-full min-w-0" placeholder="学校" value={edu.school} onChange={(e) => update(i, "school", e.target.value)} />
           <div className="grid grid-cols-2 gap-2">
-            <input className="border rounded px-2 py-1 text-sm w-full" placeholder="学位 (本科/硕士/博士)" value={edu.degree} onChange={(e) => update(i, "degree", e.target.value)} />
-            <input className="border rounded px-2 py-1 text-sm w-full" placeholder="专业" value={edu.major} onChange={(e) => update(i, "major", e.target.value)} />
+            <input className="border rounded px-2 py-1 text-sm w-full min-w-0" placeholder="学位 (本科/硕士/博士)" value={edu.degree} onChange={(e) => update(i, "degree", e.target.value)} />
+            <input className="border rounded px-2 py-1 text-sm w-full min-w-0" placeholder="专业" value={edu.major} onChange={(e) => update(i, "major", e.target.value)} />
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <input className="border rounded px-2 py-1 text-sm w-full" placeholder="开始日期 (YYYY-MM)" value={edu.startDate} onChange={(e) => update(i, "startDate", e.target.value)} />
-            <input className="border rounded px-2 py-1 text-sm w-full" placeholder="结束日期 (YYYY-MM)" value={edu.endDate} onChange={(e) => update(i, "endDate", e.target.value)} />
+            <input className="border rounded px-2 py-1 text-sm w-full min-w-0" placeholder="开始日期 (YYYY-MM)" value={edu.startDate} onChange={(e) => update(i, "startDate", e.target.value)} />
+            <input className="border rounded px-2 py-1 text-sm w-full min-w-0" placeholder="结束日期 (YYYY-MM)" value={edu.endDate} onChange={(e) => update(i, "endDate", e.target.value)} />
           </div>
         </div>
       ))}

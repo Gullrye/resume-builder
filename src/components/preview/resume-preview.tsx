@@ -189,7 +189,7 @@ export function ResumePreview() {
   return (
     <div
       ref={containerRef}
-      className="h-full overflow-auto bg-paper-dark flex flex-col items-center py-4 md:py-6 px-3 md:px-6 gap-3"
+      className="h-full overflow-y-auto overflow-x-hidden bg-paper-dark flex flex-col items-center py-4 md:py-6 px-3 md:px-6 gap-3"
     >
       {/* Hidden measurement container */}
       <div

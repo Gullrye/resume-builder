@@ -47,7 +47,7 @@ export function GeekTemplate({ data }: TemplateProps) {
 
   return (
     <div
-      className="font-sans max-w-[210mm] mx-auto bg-[#fdfdfd] relative text-[#202124] leading-[1.55] text-[13.5px]"
+      className="font-sans max-w-[210mm] mx-auto bg-[#fdfdfd] relative text-[#202124] leading-[1.55] text-[13.5px] overflow-hidden"
       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif', padding: "22px 40px 8px" }}
     >
       {/* Top gradient bar */}
@@ -228,12 +228,12 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="border-l-2 border-[#e8eaed] ml-[5px] pl-[18px]">
             {experience.map((exp, i) => (
               <TimelineItem key={i} last={i === experience.length - 1}>
-                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
-                  <div className="text-[14.5px] font-bold text-[#202124]">
+                <div className="flex items-baseline mb-1 gap-2" style={{ breakInside: "avoid" }}>
+                  <div className="flex-1 text-[14.5px] font-bold text-[#202124] min-w-0 truncate">
                     {exp.position}
                     <span className="text-[#5f6368] font-semibold ml-2 text-[13.5px]">@ {exp.company}</span>
                   </div>
-                  <span className="text-[12.5px] text-[#5f6368]" style={{ fontFamily: "Monaco, Consolas, monospace" }}>
+                  <span className="text-[12.5px] text-[#5f6368] shrink-0" style={{ fontFamily: "Monaco, Consolas, monospace" }}>
                     {exp.startDate} - {exp.endDate ?? "至今"}
                   </span>
                 </div>
@@ -258,8 +258,8 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="border-l-2 border-[#e8eaed] ml-[5px] pl-[18px]">
             {projects.map((proj, i) => (
               <TimelineItem key={i} last={i === projects.length - 1}>
-                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
-                  <div className="text-[14.5px] font-bold text-[#202124]">
+                <div className="flex items-baseline mb-1 gap-2" style={{ breakInside: "avoid" }}>
+                  <div className="flex-1 text-[14.5px] font-bold text-[#202124] min-w-0 truncate">
                     {proj.name}
                     {proj.url && (
                       <span className="text-[12px] text-[#5f6368] font-normal ml-2">{proj.url}</span>
@@ -287,12 +287,12 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="ml-[5px] pl-[18px]">
             {education.map((edu, i) => (
               <TimelineItem key={i} last={i === education.length - 1} hideLine>
-                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
-                  <div className="text-[14.5px] font-bold text-[#202124]">
+                <div className="flex items-baseline mb-1 gap-2" style={{ breakInside: "avoid" }}>
+                  <div className="flex-1 text-[14.5px] font-bold text-[#202124] min-w-0 truncate">
                     {edu.degree} {edu.major}
                     <span className="text-[#5f6368] font-semibold ml-2 text-[13.5px]">@ {edu.school}</span>
                   </div>
-                  <span className="text-[12.5px] text-[#5f6368]" style={{ fontFamily: "Monaco, Consolas, monospace" }}>
+                  <span className="text-[12.5px] text-[#5f6368] shrink-0" style={{ fontFamily: "Monaco, Consolas, monospace" }}>
                     {edu.startDate} - {edu.endDate}
                   </span>
                 </div>
@@ -307,9 +307,9 @@ export function GeekTemplate({ data }: TemplateProps) {
 
 function InfoRow({ label, value, small }: { label: string; value: string; small?: boolean }) {
   return (
-    <div className="flex justify-between border-b border-dashed border-[#e0e0e0] pb-[3px] text-[13px]">
-      <span className="text-[#5f6368]">{label}:</span>
-      <span className={`text-[#202124] font-semibold ${small ? "text-[12.5px]" : ""}`}>{value}</span>
+    <div className="flex justify-between gap-2 border-b border-dashed border-[#e0e0e0] pb-[3px] text-[13px] min-w-0">
+      <span className="text-[#5f6368] shrink-0">{label}:</span>
+      <span className={`text-[#202124] font-semibold min-w-0 truncate ${small ? "text-[12.5px]" : ""}`}>{value}</span>
     </div>
   );
 }

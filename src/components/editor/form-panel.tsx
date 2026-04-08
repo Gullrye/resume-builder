@@ -17,7 +17,7 @@ const sections = [
 
 export function FormPanel() {
   return (
-    <div className="h-full overflow-y-auto p-5 space-y-1">
+    <div className="overflow-y-auto overflow-x-hidden p-5 space-y-1">
       {sections.map(({ title, Component, defaultOpen }) => (
         <details
           key={title}
