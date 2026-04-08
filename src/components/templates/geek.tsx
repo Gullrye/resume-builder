@@ -228,7 +228,7 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="border-l-2 border-[#e8eaed] ml-[5px] pl-[18px]">
             {experience.map((exp, i) => (
               <TimelineItem key={i} last={i === experience.length - 1}>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
                   <div className="text-[14.5px] font-bold text-[#202124]">
                     {exp.position}
                     <span className="text-[#5f6368] font-semibold ml-2 text-[13.5px]">@ {exp.company}</span>
@@ -258,7 +258,7 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="border-l-2 border-[#e8eaed] ml-[5px] pl-[18px]">
             {projects.map((proj, i) => (
               <TimelineItem key={i} last={i === projects.length - 1}>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
                   <div className="text-[14.5px] font-bold text-[#202124]">
                     {proj.name}
                     {proj.url && (
@@ -268,7 +268,7 @@ export function GeekTemplate({ data }: TemplateProps) {
                 </div>
                 {proj.description && (
                   <ul className="list-none">
-                    <li className="relative pl-3 text-[#3c4043] text-justify">
+                    <li className="relative pl-3 text-[#3c4043] text-justify" style={{ breakInside: "avoid" }}>
                       <span className="absolute left-0 text-[rgba(60,130,190,0.8)] font-bold">•</span>
                       {proj.description}
                     </li>
@@ -287,7 +287,7 @@ export function GeekTemplate({ data }: TemplateProps) {
           <div className="ml-[5px] pl-[18px]">
             {education.map((edu, i) => (
               <TimelineItem key={i} last={i === education.length - 1} hideLine>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-1" style={{ breakInside: "avoid" }}>
                   <div className="text-[14.5px] font-bold text-[#202124]">
                     {edu.degree} {edu.major}
                     <span className="text-[#5f6368] font-semibold ml-2 text-[13.5px]">@ {edu.school}</span>
@@ -316,7 +316,7 @@ function InfoRow({ label, value, small }: { label: string; value: string; small?
 
 function SectionTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={`text-[16.5px] font-bold text-[#202124] mb-3 flex items-center gap-2.5 ${className}`}>
+    <h2 className={`text-[16.5px] font-bold text-[#202124] mb-3 flex items-center gap-2.5 ${className}`} style={{ breakInside: "avoid" }}>
       {children}
       <span className="flex-1 h-px bg-[#e0e0e0]" />
     </h2>

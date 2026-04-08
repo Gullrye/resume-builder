@@ -153,10 +153,8 @@ export function ResumePreview() {
         const contentTop = isFirst ? 0 : PAGE_MARGIN;
         const cardHeight =
           PAGE_HEIGHT + (isFirst ? PAGE_MARGIN : 2 * PAGE_MARGIN);
-        // Limit visible content for modern template to avoid dark sidebar overlap
-        const visibleHeight = templateId === "modern"
-          ? Math.min(PAGE_HEIGHT, breakEnd - breakStart)
-          : PAGE_HEIGHT;
+        // Clip exactly at the break point (element boundary) to avoid cutting text
+        const visibleHeight = Math.min(PAGE_HEIGHT, breakEnd - breakStart);
         const paddedHeight = Math.max(totalHeight, breakStart + PAGE_HEIGHT);
         const clipBottom = paddedHeight - breakStart - visibleHeight;
 
