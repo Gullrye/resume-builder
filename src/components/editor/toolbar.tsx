@@ -5,7 +5,7 @@ import { useResumeStore } from "@/lib/store";
 import { TEMPLATE_LIST } from "@/components/templates";
 import { TemplateId } from "@/lib/types";
 
-export function Toolbar({ onExport }: { onExport?: () => void }) {
+export function Toolbar({ onExport, isExporting }: { onExport?: () => void; isExporting?: boolean }) {
   const { templateId, setTemplateId, resumeData, resetAll, loadDemo } = useResumeStore();
 
   const handleExport = async () => {
@@ -67,9 +67,11 @@ export function Toolbar({ onExport }: { onExport?: () => void }) {
         </button>
         <button
           onClick={onExport ?? handleExport}
-          className="hidden md:inline-flex px-5 py-1.5 text-sm font-medium text-white bg-accent rounded-lg hover:bg-accent-hover transition-colors"
+          disabled={isExporting}
+          className="hidden md:inline-flex px-5 py-1.5 text-sm font-medium text-white bg-accent rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed items-center gap-1.5"
         >
-          导出 PDF
+          {isExporting && <span className="w-3.5 h-3.5 border-2 border-white/40 border-t-white rounded-full animate-spin" />}
+          {isExporting ? "导出中..." : "导出 PDF"}
         </button>
       </div>
     </div>

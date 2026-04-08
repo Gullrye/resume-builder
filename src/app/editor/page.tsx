@@ -13,6 +13,7 @@ function EditorContent() {
   const searchParams = useSearchParams();
   const { hydrate, setTemplateId, hydrated, resumeData, templateId } = useResumeStore();
   const [showPreview, setShowPreview] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     hydrate();
@@ -34,24 +35,29 @@ function EditorContent() {
   }, [templateId, hydrated]);
 
   const handleExport = async () => {
-    const res = await fetch("/api/export-pdf", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resumeData, templateId }),
-    });
+    setIsExporting(true);
+    try {
+      const res = await fetch("/api/export-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resumeData, templateId }),
+      });
 
-    if (!res.ok) {
-      alert("导出失败，请重试");
-      return;
+      if (!res.ok) {
+        alert("导出失败，请重试");
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "resume.pdf";
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      setIsExporting(false);
     }
-
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "resume.pdf";
-    a.click();
-    URL.revokeObjectURL(url);
   };
 
   if (!hydrated) {
@@ -67,7 +73,7 @@ function EditorContent() {
 
   return (
     <div className="h-screen flex flex-col bg-paper">
-      <Toolbar onExport={handleExport} />
+      <Toolbar onExport={handleExport} isExporting={isExporting} />
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         {/* Form panel */}
         <div className={`flex-1 md:flex-none w-full md:w-[40%] bg-white border-r border-border overflow-y-auto overflow-x-hidden pb-20 md:pb-0 min-w-0 ${showPreview ? "hidden md:block" : ""}`}>
@@ -93,9 +99,11 @@ function EditorContent() {
           </button>
           <button
             onClick={handleExport}
-            className="px-5 py-2.5 text-sm font-medium text-white bg-accent rounded-xl hover:bg-accent-hover transition-colors"
+            disabled={isExporting}
+            className="px-5 py-2.5 text-sm font-medium text-white bg-accent rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
           >
-            导出
+            {isExporting && <span className="w-3.5 h-3.5 border-2 border-white/40 border-t-white rounded-full animate-spin" />}
+            {isExporting ? "导出中" : "导出"}
           </button>
         </div>
       </div>
