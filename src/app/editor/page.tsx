@@ -11,7 +11,7 @@ import { Suspense } from "react";
 
 function EditorContent() {
   const searchParams = useSearchParams();
-  const { hydrate, setTemplateId, hydrated, resumeData, templateId } = useResumeStore();
+  const { hydrate, setTemplateId, hydrated, resumeData, templateId, loadDemo } = useResumeStore();
   const [showPreview, setShowPreview] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
@@ -98,9 +98,15 @@ function EditorContent() {
             预览
           </button>
           <button
+            onClick={loadDemo}
+            className="px-4 py-2.5 text-sm font-medium text-accent border border-accent/20 rounded-xl hover:bg-accent-light transition-colors"
+          >
+            填充
+          </button>
+          <button
             onClick={handleExport}
             disabled={isExporting}
-            className="px-5 py-2.5 text-sm font-medium text-white bg-accent rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
+            className="px-4 py-2.5 text-sm font-medium text-white bg-accent rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
           >
             {isExporting && <span className="w-3.5 h-3.5 border-2 border-white/40 border-t-white rounded-full animate-spin" />}
             {isExporting ? "导出中" : "导出"}
