@@ -18,13 +18,13 @@ const PAGE_MARGIN = 8;
 /**
  * Calculate page break positions.
  *
- * Two-layer strategy:
+ * Three-layer strategy:
  *  1. Collect the top-edge of EVERY element as a potential break candidate.
- *     This means breaks always land between elements — never mid-text.
- *  2. For elements explicitly marked `break-inside: avoid` (or the legacy
- *     `page-break-inside: avoid`) that fit on one page, treat the whole
- *     element as a no-split zone: if a candidate falls inside it, push the
- *     break to just before the element instead.
+ *  2. Collect text line boundaries via Range.getClientRects() for line-level
+ *     granularity inside elements (e.g. long <li> with wrapped text).
+ *  3. For elements explicitly marked `break-inside: avoid` that fit on one
+ *     page, treat the whole element as a no-split zone: if a candidate falls
+ *     inside it, push the break to just before the element instead.
  */
 function calculatePageBreaks(
   container: HTMLElement,
@@ -55,6 +55,11 @@ function calculatePageBreaks(
       bottom - top <= pageHeight
     ) {
       avoidRanges.push({ top, bottom });
+    }
+
+    // Collect line-level break candidates from text nodes
+    if (el.childNodes.length > 0) {
+      collectLineCandidates(el, containerRect, totalHeight, candidateSet);
     }
   }
 
@@ -91,6 +96,46 @@ function calculatePageBreaks(
   }
 
   return breaks;
+}
+
+/**
+ * Use Range.getClientRects() to find text line boundaries inside an element,
+ * adding each line top as a break candidate for fine-grained page breaks.
+ */
+function collectLineCandidates(
+  el: HTMLElement,
+  containerRect: DOMRect,
+  totalHeight: number,
+  candidateSet: Set<number>
+) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  const nodeTexts: { node: Text; start: number }[] = [];
+
+  let node: Text | null;
+  while ((node = walker.nextNode() as Text | null)) {
+    if (node.textContent && node.textContent.trim()) {
+      nodeTexts.push({ node, start: 0 });
+    }
+  }
+
+  for (const { node: textNode } of nodeTexts) {
+    const len = textNode.textContent!.length;
+    // Use word-level ranges to find line boundaries
+    range.setStart(textNode, 0);
+    range.setEnd(textNode, len);
+    const rects = range.getClientRects();
+
+    const seenTops = new Set<number>();
+    for (let r = 0; r < rects.length; r++) {
+      const lineTop = Math.round(rects[r].top - containerRect.top);
+      // Deduplicate (multiple rects can share the same top)
+      if (lineTop > 0 && lineTop < totalHeight && !seenTops.has(lineTop)) {
+        seenTops.add(lineTop);
+        candidateSet.add(lineTop);
+      }
+    }
+  }
 }
 
 export function ResumePreview() {

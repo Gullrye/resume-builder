@@ -239,7 +239,7 @@ export function GeekTemplate({ data }: TemplateProps) {
                 </div>
                 <ul className="list-none">
                   {exp.description.split("\n").filter(Boolean).map((line, j) => (
-                    <li key={j} className="relative pl-3 mb-1 text-[#3c4043] text-justify" style={{ breakInside: "avoid" }}>
+                    <li key={j} className="relative pl-3 mb-1 text-[#3c4043] text-justify">
                       <span className="absolute left-0 text-[rgba(60,130,190,0.8)] font-bold">•</span>
                       {line}
                     </li>
@@ -268,7 +268,7 @@ export function GeekTemplate({ data }: TemplateProps) {
                 </div>
                 {proj.description && (
                   <ul className="list-none">
-                    <li className="relative pl-3 text-[#3c4043] text-justify" style={{ breakInside: "avoid" }}>
+                    <li className="relative pl-3 text-[#3c4043] text-justify">
                       <span className="absolute left-0 text-[rgba(60,130,190,0.8)] font-bold">•</span>
                       {proj.description}
                     </li>
