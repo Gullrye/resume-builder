@@ -153,7 +153,7 @@ export function ResumePreview() {
     if (!container) return;
 
     const observer = new ResizeObserver(() => {
-      const containerWidth = container.clientWidth;
+      const containerWidth = container.offsetWidth;
       const pad = containerWidth < 768 ? 24 : 48;
       const newScale = Math.min((containerWidth - pad) / PAGE_WIDTH, 1);
       setScale(newScale);
