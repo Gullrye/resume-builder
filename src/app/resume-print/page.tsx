@@ -23,7 +23,7 @@ const emptyData: ResumeData = {
 function PrintContent() {
   const searchParams = useSearchParams();
   const dataB64 = searchParams.get("data") || "";
-  const templateId = (searchParams.get("template") || "classic") as TemplateId;
+  const templateId = (searchParams.get("template") || "modern") as TemplateId;
 
   let resumeData: ResumeData;
   try {
@@ -33,25 +33,43 @@ function PrintContent() {
     resumeData = emptyData;
   }
 
+  const isModern = templateId === "modern";
   const Template = templates[templateId];
-  return <Template data={resumeData} />;
-}
 
-export default function ResumePrintPage() {
   return (
     <>
       <style
         dangerouslySetInnerHTML={{
-          __html: `
-            @page { margin: 18px 0; size: A4; }
-            @page :first { margin-top: 0; }
-            html, body { margin: 0; padding: 0; background: white; }
-          `,
+          __html: isModern
+            ? `@page { margin: 0; size: A4; }
+               html, body { margin: 0; padding: 0; }`
+            : `@page { margin: 18px 0; size: A4; }
+               @page :first { margin-top: 0; }
+               html, body { margin: 0; padding: 0; background: white; }`,
         }}
       />
-      <Suspense>
-        <PrintContent />
-      </Suspense>
+      {isModern && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: "30%",
+            background: "#2D3748",
+            zIndex: -1,
+          }}
+        />
+      )}
+      <Template data={resumeData} />
     </>
+  );
+}
+
+export default function ResumePrintPage() {
+  return (
+    <Suspense>
+      <PrintContent />
+    </Suspense>
   );
 }

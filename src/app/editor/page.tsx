@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useResumeStore } from "@/lib/store";
 import { Toolbar } from "@/components/editor/toolbar";
 import { FormPanel } from "@/components/editor/form-panel";
@@ -21,6 +21,17 @@ function EditorContent() {
       setTemplateId(template);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Sync URL when template changes
+  useEffect(() => {
+    if (!hydrated) return;
+    const url = new URL(window.location.href);
+    const current = url.searchParams.get("template");
+    if (current !== templateId) {
+      url.searchParams.set("template", templateId);
+      window.history.replaceState(null, "", url.toString());
+    }
+  }, [templateId, hydrated]);
 
   const handleExport = async () => {
     const res = await fetch("/api/export-pdf", {

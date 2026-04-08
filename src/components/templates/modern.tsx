@@ -4,7 +4,7 @@ export function ModernTemplate({ data }: TemplateProps) {
   const { basics, experience, education, skills, projects, languages } = data;
 
   return (
-    <div className="font-sans flex max-w-[210mm] mx-auto">
+    <div className="font-sans flex max-w-[210mm] mx-auto min-h-[297mm] h-full">
       {/* Left Sidebar */}
       <aside className="w-[30%] bg-[#2D3748] text-white px-8 pt-6 pb-4">
         <h1 className="text-[18pt] font-bold">{basics.name}</h1>
@@ -83,10 +83,13 @@ export function ModernTemplate({ data }: TemplateProps) {
               <ul className="text-[8pt] text-gray-600 list-disc list-inside mt-1">
                 {exp.description
                   .split("\n")
-                  .filter(Boolean)
-                  .map((line, j) => (
-                    <li key={j} style={{ breakInside: "avoid" }}>{line}</li>
-                  ))}
+                  .map((line, j) =>
+                    line.trim() === "" ? (
+                      <li key={j} className="h-2" style={{ listStyleType: "none" }} />
+                    ) : (
+                      <li key={j} style={{ breakInside: "avoid" }}>{line}</li>
+                    )
+                  )}
               </ul>
             </div>
           ))}

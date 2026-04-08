@@ -153,17 +153,25 @@ export function ResumePreview() {
         const contentTop = isFirst ? 0 : PAGE_MARGIN;
         const cardHeight =
           PAGE_HEIGHT + (isFirst ? PAGE_MARGIN : 2 * PAGE_MARGIN);
+        // Only show content up to the next break point to avoid overlap
+        const visibleHeight = Math.min(PAGE_HEIGHT, breakEnd - breakStart);
+        const paddedHeight = Math.max(totalHeight, breakStart + PAGE_HEIGHT);
+        const clipBottom = paddedHeight - breakStart - visibleHeight;
 
         return (
           <div
             key={i}
-            className="bg-white shadow-[0_2px_20px_rgba(0,0,0,0.06)] shrink-0 relative overflow-hidden"
+            className="shadow-[0_2px_20px_rgba(0,0,0,0.06)] shrink-0 relative overflow-hidden"
             style={{
               width: PAGE_WIDTH,
               height: cardHeight,
               transform: `scale(${scale})`,
               transformOrigin: "top center",
               marginBottom: -cardHeight * (1 - scale),
+              background:
+                templateId === "modern"
+                  ? "linear-gradient(to right, #2D3748 30%, white 30%)"
+                  : "white",
             }}
           >
             {/* Content area with margin offset */}
@@ -173,20 +181,17 @@ export function ResumePreview() {
                 top: contentTop,
                 left: 0,
                 width: PAGE_WIDTH,
-                height: breakEnd - breakStart,
+                height: PAGE_HEIGHT,
                 overflow: "hidden",
               }}
             >
               {/* Clipped template slice */}
               <div
                 style={{
-                  clipPath: `inset(${breakStart}px 0 ${Math.max(
-                    0,
-                    totalHeight - breakEnd
-                  )}px 0)`,
+                  clipPath: `inset(${breakStart}px 0 ${clipBottom}px 0)`,
                   top: -breakStart,
                   width: PAGE_WIDTH,
-                  height: totalHeight,
+                  height: paddedHeight,
                   position: "absolute",
                 }}
               >
