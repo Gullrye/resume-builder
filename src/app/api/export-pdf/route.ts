@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
-import { existsSync } from "node:fs";
 import { ResumeData, TemplateId } from "@/lib/types";
-
-const CHROME_PATHS = [
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-  "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
-  "/Applications/Chromium.app/Contents/MacOS/Chromium",
-];
-
-function findSystemChrome(): string | undefined {
-  return CHROME_PATHS.find((p) => existsSync(p));
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,7 +14,6 @@ export async function POST(request: NextRequest) {
 
     const browser = await puppeteer.launch({
       headless: true,
-      executablePath: findSystemChrome(),
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
